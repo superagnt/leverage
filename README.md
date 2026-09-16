@@ -47,6 +47,7 @@ Skills that call the superagnt API need a key — grab one at
 | [`lead-enrichment`](skills/core/lead-enrichment/SKILL.md) | Enrich people and companies from a name, domain, or LinkedIn URL — emails, titles, firmographics, and mobile numbers for agents. |
 | [`linkedin-data`](skills/core/linkedin-data/SKILL.md) | LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional netwo |
 | [`reddit-data`](skills/core/reddit-data/SKILL.md) | Reddit posts, comments, and subreddit data for agents — community research and sentiment as structured JSON. |
+| [`seo-data`](skills/core/seo-data/SKILL.md) | SEO and search intelligence for agents: live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visib |
 | [`social-data`](skills/core/social-data/SKILL.md) | Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no s |
 | [`tiktok-data`](skills/core/tiktok-data/SKILL.md) | TikTok videos, creators, sounds, and trend data for agents — content and creator research as structured JSON. |
 | [`web-scraping`](skills/core/web-scraping/SKILL.md) | Scrape, search, and map the web for agents — clean markdown, structured JSON, and site URL discovery. |

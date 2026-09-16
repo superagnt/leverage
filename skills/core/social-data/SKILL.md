@@ -95,6 +95,7 @@ https://api.superagnt.com/v1/data/{platform}
 | Reddit | `reddit` | 29 | Unified access to subreddit metadata, post threads, user activity, and search. Built for LLMs and automation — not one-off scraping. |
 | Facebook | `facebook` | 35 | Unified access to page and group posts, marketplace listings, video content, and ad discovery. Built for LLMs and automation — not one-off scraping. |
 | Web | `web` | 3 | Scrape any page as clean markdown or structured JSON, search the web and get full page content in one call, and map a site&#x27;s URLs. Designed for LLMs and automation. |
+| SEO | `seo` | 16 | Live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visibility, all as agent tools. |
 
 ## Choosing the Right API
 
@@ -334,6 +335,7 @@ For a single platform, install that platform's own listing:
 - Skill: `clawhub install reddit-data` — Plugin: `openclaw plugins install @superagnt/reddit-data` — Reddit
 - Skill: `clawhub install facebook-data` — Plugin: `openclaw plugins install @superagnt/facebook-data` — Facebook
 - Skill: `clawhub install web-scraping` — Plugin: `openclaw plugins install @superagnt/web-scraping` — Web
+- Skill: `clawhub install seo-data` — Plugin: `openclaw plugins install @superagnt/seo-data` — SEO
 
 ## Links
 
