@@ -1019,6 +1019,6 @@ curl -X GET "https://api.superagnt.com/v1/data/facebook/get_facebook_video_post_
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/facebook)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/facebook)
 - [Dashboard](https://app.superagnt.com/dashboard)

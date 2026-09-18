@@ -559,6 +559,6 @@ curl -X POST "https://api.superagnt.com/v1/data/seo/serp" \
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/seo)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/seo)
 - [Dashboard](https://app.superagnt.com/dashboard)

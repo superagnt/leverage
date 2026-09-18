@@ -1,7 +1,7 @@
 ---
 name: tiktok-data
 description: "TikTok videos, creators, sounds, and trend data for agents — content and creator research as structured JSON."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

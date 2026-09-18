@@ -1298,6 +1298,6 @@ curl -X GET "https://api.superagnt.com/v1/data/linkedin/get-company-by-domain?pa
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/linkedin)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/linkedin)
 - [Dashboard](https://app.superagnt.com/dashboard)

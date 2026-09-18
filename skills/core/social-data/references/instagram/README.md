@@ -621,6 +621,6 @@ curl -X GET "https://api.superagnt.com/v1/data/instagram/search?param=value" \
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/instagram)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/instagram)
 - [Dashboard](https://app.superagnt.com/dashboard)

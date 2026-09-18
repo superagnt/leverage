@@ -1,7 +1,7 @@
 ---
 name: company-enrichment
 description: "Company firmographics, tech stack, headcount, and intelligence from a domain — agent-ready account research."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

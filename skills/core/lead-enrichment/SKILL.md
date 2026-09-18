@@ -1,7 +1,7 @@
 ---
 name: lead-enrichment
 description: "Enrich people and companies from a name, domain, or LinkedIn URL — emails, titles, firmographics, and mobile numbers for agents."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

@@ -1,7 +1,7 @@
 ---
 name: exa-search
 description: "Neural web search, parsed page contents, find-similar, and agentic Q&amp;A over the live web through the superagnt unified API."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

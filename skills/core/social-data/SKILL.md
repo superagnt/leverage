@@ -1,7 +1,7 @@
 ---
 name: social-data
 description: "Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no scraping infra."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

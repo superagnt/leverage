@@ -210,6 +210,6 @@ curl -X POST "https://api.superagnt.com/v1/data/web/scrape" \
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/web)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/web)
 - [Dashboard](https://app.superagnt.com/dashboard)

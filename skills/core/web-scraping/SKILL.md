@@ -1,7 +1,7 @@
 ---
 name: web-scraping
 description: "Scrape, search, and map the web for agents — clean markdown, structured JSON, and site URL discovery."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

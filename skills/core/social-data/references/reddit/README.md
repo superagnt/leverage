@@ -725,6 +725,6 @@ curl -X GET "https://api.superagnt.com/v1/data/reddit/getSimilarSubreddits?param
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/reddit)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/reddit)
 - [Dashboard](https://app.superagnt.com/dashboard)

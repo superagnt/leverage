@@ -1351,6 +1351,6 @@ curl -X GET "https://api.superagnt.com/v1/data/x/user/medias/continuation?param=
 
 ## Links
 
-- [Documentation](https://superagnt.com)
-- [API Reference](https://superagnt.com/apis/social/x)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/x)
 - [Dashboard](https://app.superagnt.com/dashboard)

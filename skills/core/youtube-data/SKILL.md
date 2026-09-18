@@ -1,7 +1,7 @@
 ---
 name: youtube-data
 description: "YouTube channels, videos, transcripts, and comments for agents — content research and channel intelligence."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

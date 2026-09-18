@@ -1,7 +1,7 @@
 ---
 name: email-finder
 description: "Find and verify work emails from a name and company — waterfall lookup across providers, one call for agents."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]

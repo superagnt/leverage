@@ -1,7 +1,7 @@
 ---
 name: reddit-data
 description: "Reddit posts, comments, and subreddit data for agents — community research and sentiment as structured JSON."
-version: 2.0.0
+version: 2.0.2
 author: superagnt
 license: MIT-0
 platforms: [macos, linux, windows]
