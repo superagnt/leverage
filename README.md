@@ -90,6 +90,7 @@ recorded real run — no estimated numbers.
 | [`seo-page-factory`](blueprints/seo-page-factory/seo-page-factory/SKILL.md) | This skill should be used when the user wants to run the SEO Page Factory blueprint, or asks to "write SEO pages for keyword gaps", "draft p |
 | [`shortform-script-engine`](blueprints/shortform-script-engine/shortform-script-engine/SKILL.md) | This skill should be used when the user wants to run the Short-Form Script Engine blueprint, or asks to "write short-form scripts from what' |
 | [`video-multiplier`](blueprints/video-multiplier/video-multiplier/SKILL.md) | This skill should be used when the user wants to run the Video Multiplier blueprint, or asks to "package my YouTube upload", "write chapters |
+| [`warm-outbound-engine`](blueprints/warm-outbound-engine/warm-outbound-engine/SKILL.md) | This skill should be used when the user wants to run the LinkedIn Engagement Outbound blueprint, or asks to "scrape LinkedIn post engagers", |
 <!-- BLUEPRINTS:END -->
 
 ## Star it
