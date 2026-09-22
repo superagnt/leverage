@@ -25,11 +25,12 @@ metadata:
 
 The superagnt LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
 
-## Best install: connect the MCP server
+## Alternative install: the scoped MCP server
 
-If this client speaks MCP, connect the scoped server instead of using this
-skill's curl calls — native tools, structured parameters, OAuth sign-in, and a
-tool surface that can grow on demand:
+If this client speaks MCP, you can connect the LinkedIn Data facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
 ```
 https://mcp.superagnt.com/mcp/linkedin
@@ -39,11 +40,6 @@ That URL publishes full OAuth discovery: an MCP-capable client needs the URL
 and nothing else (approve once in the browser). On clients that hold a bearer
 instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
 https://mcp.superagnt.com/agent-setup/prompt.md
-
-Two clients refresh tools live when the server grows (`agnt_tools_enable`):
-Hermes and OpenClaw. Most others hold the tool list until reconnect — on a
-cloud connector (claude.ai, ChatGPT) refresh the connector in its settings,
-on a direct config start a new session.
 
 This skill document stays fully usable on curl-only environments — everything
 below works with just the API key.
@@ -1372,17 +1368,13 @@ curl -X GET &#x27;https://api.superagnt.com/v1/data/linkedin/get-company-details
 - Investment research agents gathering company data for due diligence
 - Outbound automation platforms personalizing messages with real professional context
 
-## Growing beyond this source
+## Scope
 
-The same key and credit balance cover every superagnt data source and, on the
-MCP server, the full platform (workspace database, files, webhooks, queues,
-first-party people/company enrichment). Over MCP, discover what is available
-with `agnt_tools_search` and turn a family on with `agnt_tools_enable` — money
-is never charged without a human confirming in the dashboard.
-
-```bash
-curl https://api.superagnt.com/v1/platforms
-```
+This skill covers LinkedIn Data only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 

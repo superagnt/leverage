@@ -25,11 +25,12 @@ metadata:
 
 The Dub integration connects your Dub workspace to superagnt so AI agents and workflows can manage short links, track lead and sale conversions, and pull real-time link attribution analytics. Supports link CRUD (including bulk and upsert), tags, folders, customers, custom domains, and the full conversion-tracking pipeline.
 
-## Best install: connect the MCP server
+## Alternative install: the MCP server
 
-If this client speaks MCP, connect the workspace server instead of using this
-skill's curl calls — once the Dub account is connected in the
-dashboard, its tools appear on the server automatically as native MCP tools:
+If this client speaks MCP, you can connect the workspace server instead of
+using this skill's curl calls — after the user connects their
+Dub account in the dashboard, the same endpoints below are exposed
+as native MCP tools:
 
 ```
 https://mcp.superagnt.com/mcp
@@ -40,6 +41,20 @@ and nothing else (approve once in the browser). Per-client setup lines:
 https://mcp.superagnt.com/agent-setup/prompt.md
 
 Everything below works on curl-only environments with just the API key.
+
+## Capabilities and safety
+
+This skill documents the Dub API surface the user's connected
+account can reach — which can include destructive operations (updates,
+deletes) and, where the vendor supports them, actions performed as the user
+(sending messages, modifying records, changing settings). Two hard rules:
+
+- **Confirm before destructive or outbound actions.** Never delete, overwrite,
+  or send on the user's behalf without their explicit confirmation in the
+  conversation.
+- **Stay inside the user's request.** Use only the endpoints the task needs;
+  this skill grants no access beyond the Dub connection the user
+  set up themselves.
 
 ## Prerequisites
 

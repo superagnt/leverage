@@ -1,6 +1,6 @@
 ---
 name: social-data
-description: "Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no scraping infra."
+description: "Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no scraping infra. Also includes hosted webhook receiving for inbound events."
 version: 2.0.2
 author: superagnt
 license: MIT-0
@@ -27,11 +27,16 @@ One key, one credit balance, structured social data across seven platforms. No
 scraping infra, no upstream vendor accounts. Every response is JSON shaped for
 LLM and agent consumption.
 
-## Best install: connect the MCP server
+**What this skill contains, in full:** the seven social data APIs listed below,
+plus superagnt's hosted webhook receiver (create an endpoint, hand its URL to a
+third party, poll and acknowledge deliveries). Nothing else — no other platform
+surface is documented or enabled here.
 
-If this client speaks MCP, connect the scoped server instead of using this
-skill's curl calls — native tools, structured parameters, OAuth sign-in, and a
-tool surface that grows on demand:
+## Alternative install: the scoped MCP server
+
+If this client speaks MCP, you can connect the social-data facet server
+instead of using this skill's curl calls — the same surface as native MCP
+tools with structured parameters and OAuth sign-in, scoped to this listing:
 
 ```
 https://mcp.superagnt.com/mcp/social-data
@@ -41,11 +46,6 @@ The URL publishes full OAuth discovery — an MCP-capable client needs the URL
 and nothing else (approve once in the browser). Bearer-only clients add an
 `Authorization: Bearer` header. Per-client setup lines:
 https://mcp.superagnt.com/agent-setup/prompt.md
-
-Hermes and OpenClaw refresh tools live when the server grows
-(`agnt_tools_enable`); most other clients hold the tool list until reconnect —
-on a cloud connector (claude.ai, ChatGPT) refresh the connector in its
-settings, on a direct config start a new session.
 
 Everything below works on curl-only environments with just the API key.
 
@@ -316,26 +316,27 @@ curl -X POST https://api.superagnt.com/v1/webhook-endpoints/deliveries/ack \
 - **Always acknowledge after successful processing.** Otherwise the same delivery will be re-returned on every poll with `unacknowledged: true`.
 - **The receive URL is a secret.** Don't log it, don't echo it back unnecessarily, don't share it across users.
 
-## Growing beyond social data
+## Scope
 
-Over MCP, the same key covers the full platform — workspace database, files,
-queues, first-party people/company enrichment. Discover with
-`agnt_tools_search`, enable with `agnt_tools_enable`; money is never charged
-without a human confirming in the dashboard.
+This skill covers the social data APIs and webhook receiver documented above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here.
 
 ## Per-Platform Listings
 
 For a single platform, install that platform's own listing:
 
-- Skill: `clawhub install linkedin-data` — Plugin: `openclaw plugins install @superagnt/linkedin-data` — LinkedIn
-- Skill: `clawhub install youtube-data` — Plugin: `openclaw plugins install @superagnt/youtube-data` — YouTube
-- Skill: `clawhub install tiktok-data` — Plugin: `openclaw plugins install @superagnt/tiktok-data` — TikTok
-- Skill: `clawhub install x-twitter-data` — Plugin: `openclaw plugins install @superagnt/x-twitter-data` — X (Twitter)
-- Skill: `clawhub install instagram-data` — Plugin: `openclaw plugins install @superagnt/instagram-data` — Instagram
-- Skill: `clawhub install reddit-data` — Plugin: `openclaw plugins install @superagnt/reddit-data` — Reddit
-- Skill: `clawhub install facebook-data` — Plugin: `openclaw plugins install @superagnt/facebook-data` — Facebook
-- Skill: `clawhub install web-scraping` — Plugin: `openclaw plugins install @superagnt/web-scraping` — Web
-- Skill: `clawhub install seo-data` — Plugin: `openclaw plugins install @superagnt/seo-data` — SEO
+- Skill: `clawhub install superagnt/linkedin-data` — Plugin: `openclaw plugins install @superagnt/linkedin-data` — LinkedIn
+- Skill: `clawhub install superagnt/youtube-data` — Plugin: `openclaw plugins install @superagnt/youtube-data` — YouTube
+- Skill: `clawhub install superagnt/tiktok-data` — Plugin: `openclaw plugins install @superagnt/tiktok-data` — TikTok
+- Skill: `clawhub install superagnt/x-twitter-data` — Plugin: `openclaw plugins install @superagnt/x-twitter-data` — X (Twitter)
+- Skill: `clawhub install superagnt/instagram-data` — Plugin: `openclaw plugins install @superagnt/instagram-data` — Instagram
+- Skill: `clawhub install superagnt/reddit-data` — Plugin: `openclaw plugins install @superagnt/reddit-data` — Reddit
+- Skill: `clawhub install superagnt/facebook-data` — Plugin: `openclaw plugins install @superagnt/facebook-data` — Facebook
+- Skill: `clawhub install superagnt/web-scraping` — Plugin: `openclaw plugins install @superagnt/web-scraping` — Web
+- Skill: `clawhub install superagnt/seo-data` — Plugin: `openclaw plugins install @superagnt/seo-data` — SEO
 
 ## Links
 

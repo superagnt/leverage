@@ -25,11 +25,12 @@ metadata:
 
 Resolve a domain or company name into structured account intelligence: firmographics, headcount, funding, competitors, technographics, and the emails known on the domain. Discover and search endpoints build target lists from plain criteria; bulk enrich processes whole account lists in one call. Everything is orchestrated server-side across multiple providers, so an agent gets one consistent JSON shape per company regardless of where the data came from. Built for account research before outreach, ICP filtering over raw lists, and market-mapping jobs.
 
-## Best install: connect the MCP server
+## Alternative install: the scoped MCP server
 
-If this client speaks MCP, connect the scoped server instead of using this
-skill's curl calls — native tools, structured parameters, OAuth sign-in, and a
-tool surface that can grow on demand:
+If this client speaks MCP, you can connect the Company Enrichment facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
 ```
 https://mcp.superagnt.com/mcp/company-enrichment
@@ -39,11 +40,6 @@ That URL publishes full OAuth discovery: an MCP-capable client needs the URL
 and nothing else (approve once in the browser). On clients that hold a bearer
 instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
 https://mcp.superagnt.com/agent-setup/prompt.md
-
-Two clients refresh tools live when the server grows (`agnt_tools_enable`):
-Hermes and OpenClaw. Most others hold the tool list until reconnect — on a
-cloud connector (claude.ai, ChatGPT) refresh the connector in its settings,
-on a direct config start a new session.
 
 This skill document stays fully usable on curl-only environments — everything
 below works with just the API key.
@@ -165,17 +161,13 @@ curl -X POST &#x27;https://api.superagnt.com/v1/data/agnt/companies/enrich&#x27;
 ## Use Cases
 
 
-## Growing beyond this source
+## Scope
 
-The same key and credit balance cover every superagnt data source and, on the
-MCP server, the full platform (workspace database, files, webhooks, queues,
-first-party people/company enrichment). Over MCP, discover what is available
-with `agnt_tools_search` and turn a family on with `agnt_tools_enable` — money
-is never charged without a human confirming in the dashboard.
-
-```bash
-curl https://api.superagnt.com/v1/platforms
-```
+This skill covers Company Enrichment only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 

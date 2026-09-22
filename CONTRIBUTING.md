@@ -25,5 +25,6 @@ matching the directory, a `description`, then the instructions). Supporting
 2. CI runs format + scan checks; a maintainer reviews the instructions.
 3. Merged contributions are credited in the next release's notes.
 
-`skills/core/` and `blueprints/` are CI-generated from the superagnt monorepo
-and owned by CODEOWNERS — please don't PR against them; open an issue instead.
+`skills/core/` and `skills/packaged/` are CI-generated from the superagnt
+monorepo and owned by CODEOWNERS — please don't PR against them; open an
+issue instead.

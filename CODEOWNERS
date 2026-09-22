@@ -1,8 +1,8 @@
 # CI-generated surfaces — changes arrive via the superagnt monorepo sync, not
 # PRs. Community contributions belong in skills/community/ (no entry here, so
 # any maintainer can review and merge them).
-/skills/core/    @jaencarrodine
-/blueprints/     @jaencarrodine
+/skills/core/     @jaencarrodine
+/skills/packaged/ @jaencarrodine
 /.github/        @jaencarrodine
 /README.md       @jaencarrodine
 /CODEOWNERS      @jaencarrodine
