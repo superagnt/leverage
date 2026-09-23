@@ -33,7 +33,7 @@ or skip the command entirely — paste this into your agent and it wires
 itself up, MCP connection included:
 
 ```
-Fetch and execute the appropriate instructions to set me up for superagnt_ from https://superagnt.com/agent-setup/prompt.md
+Install superagnt for me. It's the superagnt plugin from the github.com/superagnt/plugins marketplace, and it connects the superagnt MCP server (I'll sign in through my browser). The setup guide for each kind of agent is at https://superagnt.com/agent-setup/prompt.md
 ```
 
 on Claude Code the plugin is the tightest install (MCP server + skills in
@@ -87,10 +87,10 @@ shows comes from a recorded real run — never an estimate.
 | [`competitor-mindshare`](skills/packaged/competitor-mindshare/SKILL.md) | This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how muc |
 | [`gtm-prospecting-desk`](skills/packaged/gtm-prospecting-desk/SKILL.md) | This skill should be used when the user wants to run the Outbound Pipeline Engine skill, or asks to "build my prospecting pipeline", "run my |
 | [`newsletter-autopilot`](skills/packaged/newsletter-autopilot/SKILL.md) | This skill should be used when the user wants to run the Newsletter Autopilot skill, or asks to "research and draft my newsletter", "assembl |
-| [`shortform-script-engine`](skills/packaged/shortform-script-engine/SKILL.md) | This skill should be used when the user wants to run the Short-Form Script Engine skill, or asks to "write short-form scripts from what's wo |
+| [`shortform-script-engine`](skills/packaged/shortform-script-engine/SKILL.md) | This skill should be used when the user wants to run the Hook Lab skill, or asks to "write short-form scripts from what's working in my nich |
 | [`super-seo`](skills/packaged/super-seo/SKILL.md) | This skill should be used when the user wants to run the Super SEO skill, or asks to "run my SEO", "audit my site's SEO", "improve my rankin |
 | [`video-multiplier`](skills/packaged/video-multiplier/SKILL.md) | This skill should be used when the user wants to run the Video Multiplier skill, or asks to "package my YouTube upload", "write chapters and |
-| [`warm-outbound-engine`](skills/packaged/warm-outbound-engine/SKILL.md) | This skill should be used when the user wants to run the LinkedIn Engagement Outbound skill, or asks to "scrape LinkedIn post engagers", "bu |
+| [`warm-outbound-engine`](skills/packaged/warm-outbound-engine/SKILL.md) | This skill should be used when the user wants to run the LinkedIn Warm Outbound skill, or asks to "scrape LinkedIn post engagers", "build ou |
 <!-- PACKAGED_SKILLS:END -->
 
 ## Star it
