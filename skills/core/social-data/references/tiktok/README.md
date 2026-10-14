@@ -284,4 +284,4 @@ curl -X GET "https://api.superagnt.com/v1/data/tiktok/video/details?param=value"
 
 - [Documentation](https://superagnt.com/docs)
 - [API Reference](https://superagnt.com/docs/apis/social/tiktok)
-- [Dashboard](https://app.superagnt.com/dashboard)
+- [superagnt app](https://app.superagnt.com/dashboard)

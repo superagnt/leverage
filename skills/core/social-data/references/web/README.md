@@ -212,4 +212,4 @@ curl -X POST "https://api.superagnt.com/v1/data/web/scrape" \
 
 - [Documentation](https://superagnt.com/docs)
 - [API Reference](https://superagnt.com/docs/apis/web)
-- [Dashboard](https://app.superagnt.com/dashboard)
+- [superagnt app](https://app.superagnt.com/dashboard)

@@ -23,7 +23,7 @@ metadata:
 
 # LinkedIn Data
 
-The superagnt LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
+The superagnt_ LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
 
 ## Alternative install: the scoped MCP server
 
@@ -46,7 +46,7 @@ below works with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-linkedin-data-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-linkedin-data-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result means you are live. A 401 means the key is wrong or missing; a
-402 means the workspace is out of credits — the dashboard shows both.
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
@@ -1379,5 +1379,5 @@ documented here. The public catalog is at `https://api.superagnt.com/v1/platform
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-linkedin-data-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-linkedin-data-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-linkedin-data-key)
 - [This listing](https://clawhub.ai/superagnt/skills/linkedin-data)

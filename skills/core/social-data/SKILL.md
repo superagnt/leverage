@@ -51,7 +51,7 @@ Everything below works on curl-only environments with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-social-data-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-social-data-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result proves the key and credit balance end to end. 401 = bad key,
-402 = out of credits — the dashboard shows both.
+402 = out of credits — the superagnt app shows both.
 
 ## Discovery
 
@@ -158,7 +158,7 @@ superagnt can act as a hosted webhook receiver. You create an **endpoint** in th
       "properties": {
         "name": {
           "type": "string",
-          "description": "Workspace-unique label for the endpoint, 3-50 chars, lowercase alphanumeric with hyphens (e.g. \"stripe-prod\", \"calendly-bookings\"). Shown in the dashboard; not part of the receive URL."
+          "description": "Workspace-unique label for the endpoint, 3-50 chars, lowercase alphanumeric with hyphens (e.g. \"stripe-prod\", \"calendly-bookings\"). Shown in the superagnt app; not part of the receive URL."
         },
         "description": {
           "type": "string",
@@ -340,6 +340,6 @@ For a single platform, install that platform's own listing:
 
 ## Links
 
-- [Dashboard / API keys](https://superagnt.com/r/ch-social-data-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-social-data-key)
 - [Documentation](https://superagnt.com/r/ch-social-data-docs)
 - [This listing](https://clawhub.ai/superagnt/skills/social-data)

@@ -46,7 +46,7 @@ below works with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-lead-enrichment-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-lead-enrichment-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result means you are live. A 401 means the key is wrong or missing; a
-402 means the workspace is out of credits — the dashboard shows both.
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
@@ -172,5 +172,5 @@ documented here. The public catalog is at `https://api.superagnt.com/v1/platform
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-lead-enrichment-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-lead-enrichment-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-lead-enrichment-key)
 - [This listing](https://clawhub.ai/superagnt/skills/lead-enrichment)

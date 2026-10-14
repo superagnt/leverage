@@ -23,7 +23,7 @@ metadata:
 
 # TikTok Data
 
-The superagnt TikTok API wraps TikTok surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to video details, creator profiles, and search across accounts and videos with predictable billing and operational simplicity.
+The superagnt_ TikTok API wraps TikTok surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt_ with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to video details, creator profiles, and search across accounts and videos with predictable billing and operational simplicity.
 
 ## Alternative install: the scoped MCP server
 
@@ -46,7 +46,7 @@ below works with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-tiktok-data-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-tiktok-data-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result means you are live. A 401 means the key is wrong or missing; a
-402 means the workspace is out of credits — the dashboard shows both.
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
@@ -336,7 +336,7 @@ to an API endpoint under the base URL.
 
 ```bash
 curl -X GET &#x27;https://api.superagnt.com/v1/data/tiktok&#x27; \
-  -H &#x27;X-API-Key: your_api_key_here&#x27; \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27;
 ```
 
@@ -359,5 +359,5 @@ documented here. The public catalog is at `https://api.superagnt.com/v1/platform
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-tiktok-data-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-tiktok-data-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-tiktok-data-key)
 - [This listing](https://clawhub.ai/superagnt/skills/tiktok-data)

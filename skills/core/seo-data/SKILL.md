@@ -46,7 +46,7 @@ below works with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-seo-data-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-seo-data-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result means you are live. A 401 means the key is wrong or missing; a
-402 means the workspace is out of credits — the dashboard shows both.
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
@@ -129,6 +129,10 @@ to an API endpoint under the base URL.
         "depth": {
           "type": "integer",
           "description": "Number of results to return, in steps of 10. Default 10 (cheapest). Each additional 10 results bills as one more results page."
+        },
+        "load_async_ai_overview": {
+          "type": "boolean",
+          "description": "Set to true to load AI Overviews that Google renders asynchronously, so the `ai_overview` item comes back with its text and cited sources (`markdown`, `items`, `references`). Left off, an async overview still appears, flagged `asynchronous_ai_overview: true`, but with those fields null: you can tell an overview exists, not what it cites. In the default markdown view, the overview row lists its cited sources as `cited_domains`. Adds up to about 0.36 cents per call (roughly double the default-depth price), charged only when an overview actually had to be loaded; the response's `meta.costCents` shows what the call billed. Default false."
         }
       },
       "required": [
@@ -634,5 +638,5 @@ documented here. The public catalog is at `https://api.superagnt.com/v1/platform
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-seo-data-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-seo-data-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-seo-data-key)
 - [This listing](https://clawhub.ai/superagnt/skills/seo-data)

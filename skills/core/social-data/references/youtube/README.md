@@ -588,4 +588,4 @@ curl -X GET "https://api.superagnt.com/v1/data/youtube/video/screenshot?param=va
 
 - [Documentation](https://superagnt.com/docs)
 - [API Reference](https://superagnt.com/docs/apis/social/youtube)
-- [Dashboard](https://app.superagnt.com/dashboard)
+- [superagnt app](https://app.superagnt.com/dashboard)

@@ -29,7 +29,7 @@ The Attio integration connects your Attio workspace to superagnt, letting AI age
 
 If this client speaks MCP, you can connect the workspace server instead of
 using this skill's curl calls — after the user connects their
-Attio account in the dashboard, the same endpoints below are exposed
+Attio account in the superagnt app, the same endpoints below are exposed
 as native MCP tools:
 
 ```
@@ -58,10 +58,10 @@ deletes) and, where the vendor supports them, actions performed as the user
 
 ## Prerequisites
 
-1. An API key — get one from the [dashboard](https://superagnt.com/r/ch-attio-crm-key) and export it as
+1. An API key — get one from the [superagnt app](https://superagnt.com/r/ch-attio-crm-key) and export it as
    `SUPERAGNT_API_KEY`.
-2. A connected Attio account — connect it in the
-   [connections dashboard](https://app.superagnt.com/dashboard/connections). Calls fail with a clear error
+2. A connected Attio account — connect it on the
+   [Connections page](https://app.superagnt.com/dashboard/connections). Calls fail with a clear error
    until the vendor is connected; that error is the signal to send the user to
    the connections page, not a bug.
 
@@ -2157,6 +2157,6 @@ curl -X GET &#x27;https://api.superagnt.com/v1/connections/attio/v2/objects&#x27
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-attio-crm-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-attio-crm-key)
-- [Connections dashboard](https://app.superagnt.com/dashboard/connections)
+- [superagnt app / API keys](https://superagnt.com/r/ch-attio-crm-key)
+- [Connections page](https://app.superagnt.com/dashboard/connections)
 - [This listing](https://clawhub.ai/superagnt/skills/attio-crm)

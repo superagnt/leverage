@@ -23,7 +23,7 @@ metadata:
 
 # Web Scraping
 
-The superagnt Web API gives agents reliable access to the live web through a single integration. Fetch the content of any public page as clean main-content markdown or structured JSON, run a web search and pull the full content of each result in one call, and discover every URL on a site before scraping it. JavaScript-rendered pages are handled for you. Instead of managing scraping infrastructure, proxies, and rate limits yourself, you call superagnt with one credential and consume agent-ready JSON with predictable, usage-based credit pricing.
+The superagnt_ Web API gives agents reliable access to the live web through a single integration. Fetch the content of any public page as clean main-content markdown or structured JSON, run a web search and pull the full content of each result in one call, and discover every URL on a site before scraping it. JavaScript-rendered pages are handled for you. Instead of managing scraping infrastructure, proxies, and rate limits yourself, you call superagnt_ with one credential and consume agent-ready JSON with predictable, usage-based credit pricing.
 
 ## Alternative install: the scoped MCP server
 
@@ -46,7 +46,7 @@ below works with just the API key.
 
 ## Authentication
 
-Get an API key from the [dashboard](https://superagnt.com/r/ch-web-scraping-key) and export it as
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-web-scraping-key) and export it as
 `SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
@@ -66,7 +66,7 @@ curl -s https://api.superagnt.com/v1/credits \
 ```
 
 A JSON result means you are live. A 401 means the key is wrong or missing; a
-402 means the workspace is out of credits — the dashboard shows both.
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
@@ -286,5 +286,5 @@ documented here. The public catalog is at `https://api.superagnt.com/v1/platform
 ## Links
 
 - [Documentation](https://superagnt.com/r/ch-web-scraping-docs)
-- [Dashboard / API keys](https://superagnt.com/r/ch-web-scraping-key)
+- [superagnt app / API keys](https://superagnt.com/r/ch-web-scraping-key)
 - [This listing](https://clawhub.ai/superagnt/skills/web-scraping)

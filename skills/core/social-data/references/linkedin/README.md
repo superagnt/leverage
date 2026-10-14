@@ -1300,4 +1300,4 @@ curl -X GET "https://api.superagnt.com/v1/data/linkedin/get-company-by-domain?pa
 
 - [Documentation](https://superagnt.com/docs)
 - [API Reference](https://superagnt.com/docs/apis/social/linkedin)
-- [Dashboard](https://app.superagnt.com/dashboard)
+- [superagnt app](https://app.superagnt.com/dashboard)

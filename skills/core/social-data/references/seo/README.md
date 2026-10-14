@@ -70,6 +70,10 @@ The following JSON defines all available tools with their parameters. Each tool 
         "depth": {
           "type": "integer",
           "description": "Number of results to return, in steps of 10. Default 10 (cheapest). Each additional 10 results bills as one more results page."
+        },
+        "load_async_ai_overview": {
+          "type": "boolean",
+          "description": "Set to true to load AI Overviews that Google renders asynchronously, so the `ai_overview` item comes back with its text and cited sources (`markdown`, `items`, `references`). Left off, an async overview still appears, flagged `asynchronous_ai_overview: true`, but with those fields null: you can tell an overview exists, not what it cites. In the default markdown view, the overview row lists its cited sources as `cited_domains`. Adds up to about 0.36 cents per call (roughly double the default-depth price), charged only when an overview actually had to be loaded; the response's `meta.costCents` shows what the call billed. Default false."
         }
       },
       "required": [
@@ -561,4 +565,4 @@ curl -X POST "https://api.superagnt.com/v1/data/seo/serp" \
 
 - [Documentation](https://superagnt.com/docs)
 - [API Reference](https://superagnt.com/docs/apis/seo)
-- [Dashboard](https://app.superagnt.com/dashboard)
+- [superagnt app](https://app.superagnt.com/dashboard)
