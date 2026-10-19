@@ -56,6 +56,8 @@ deletes) and, where the vendor supports them, actions performed as the user
   this skill grants no access beyond the Instantly AI connection the user
   set up themselves.
 
+**Disclosure:** Account administration: beyond outreach, the Instantly API includes workspace administration, billing, API-key, and account-procurement endpoints. Use those only when the user explicitly asks for account administration, and always confirm before creating keys, changing billing, or purchasing anything.
+
 ## Prerequisites
 
 1. An API key — get one from the [superagnt app](https://superagnt.com/r/ch-instantly-outreach-key) and export it as

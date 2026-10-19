@@ -1,6 +1,6 @@
 ---
 name: social-data
-description: "Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no scraping infra. Also includes hosted webhook receiving for inbound events."
+description: "Unified data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook, plus web scraping, SEO data, and hosted webhook receiving. Structured JSON, no infra to run."
 version: 2.0.2
 author: superagnt
 license: MIT-0
@@ -27,10 +27,11 @@ One key, one credit balance, structured social data across seven platforms. No
 scraping infra, no upstream vendor accounts. Every response is JSON shaped for
 LLM and agent consumption.
 
-**What this skill contains, in full:** the seven social data APIs listed below,
-plus superagnt's hosted webhook receiver (create an endpoint, hand its URL to a
-third party, poll and acknowledge deliveries). Nothing else — no other platform
-surface is documented or enabled here.
+**What this skill contains, in full:** the data sources listed below (seven
+social platforms plus web scraping and SEO) and superagnt's hosted webhook
+receiver (create an endpoint, hand its URL to a third party, poll and
+acknowledge deliveries). Nothing else: no other platform surface is documented
+or enabled here.
 
 ## Alternative install: the scoped MCP server
 
@@ -95,7 +96,7 @@ https://api.superagnt.com/v1/data/{platform}
 | Reddit | `reddit` | 29 | Unified access to subreddit metadata, post threads, user activity, and search. Built for LLMs and automation — not one-off scraping. |
 | Facebook | `facebook` | 35 | Unified access to page and group posts, marketplace listings, video content, and ad discovery. Built for LLMs and automation — not one-off scraping. |
 | Web | `web` | 3 | Scrape any page as clean markdown or structured JSON, search the web and get full page content in one call, and map a site&#x27;s URLs. Designed for LLMs and automation. |
-| SEO | `seo` | 16 | Live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visibility, all as agent tools. |
+| SEO | `seo` | 22 | Live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visibility, all as agent tools. |
 
 ## Choosing the Right API
 
@@ -318,8 +319,8 @@ curl -X POST https://api.superagnt.com/v1/webhook-endpoints/deliveries/ack \
 
 ## Scope
 
-This skill covers the social data APIs and webhook receiver documented above,
-nothing else. The same API key also works with superagnt's other data sources
+This skill covers the data sources and webhook receiver documented above
+(social platforms, web scraping, SEO) and nothing else. The same API key also works with superagnt's other data sources
 and platform tools, but those are separate listings that the user installs or
 enables themselves; this skill does not add or enable anything beyond what is
 documented here.

@@ -406,7 +406,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "sort": {
           "type": "string",
-          "description": "you can just select one item from below:\n`relevance`\n`hot`\n`top`\n`new`\n`comments`"
+          "description": "Sort order. Use 'top' to filter by time."
         },
         "subreddit": {
           "type": "string",
@@ -414,7 +414,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "time": {
           "type": "string",
-          "description": "you can just select one item from below:\n`hour`\n`day`\n`week`\n`month`\n`year`\n`all`"
+          "description": "Time window. Only applies with sort 'top'; any other sort is refused with time set."
         }
       },
       "required": [

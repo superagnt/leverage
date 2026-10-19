@@ -56,6 +56,8 @@ deletes) and, where the vendor supports them, actions performed as the user
   this skill grants no access beyond the HeyReach connection the user
   set up themselves.
 
+**Disclosure:** Account administration: beyond outreach, the HeyReach API includes organization and workspace administration endpoints, including member invites and API-key creation. Use those only when the user explicitly asks for account administration, and always confirm before creating keys or changing team membership.
+
 ## Prerequisites
 
 1. An API key — get one from the [superagnt app](https://superagnt.com/r/ch-heyreach-outreach-key) and export it as
@@ -108,6 +110,8 @@ https://api.superagnt.com/v1/connections/heyreach
 | `POST` | `/campaign/UpdateSettings` | Update campaign settings |
 | `POST` | `/campaign/UpdateSchedule` | Update campaign schedule |
 | `POST` | `/campaign/UpdateAccounts` | Update campaign sender accounts |
+| `POST` | `/campaign/AddLinkedInAccountsToCampaign` | Add sender accounts to campaign |
+| `POST` | `/campaign/RemoveLinkedInAccountsFromCampaign` | Remove sender accounts from campaign |
 | `POST` | `/campaign/UpdateSequence` | Update campaign sequence |
 | `GET` | `/campaign/GetCampaignSequence` | Get campaign sequence |
 | `POST` | `/campaign/AddLeadsToCampaignV2` | Add leads to campaign |
@@ -115,12 +119,23 @@ https://api.superagnt.com/v1/connections/heyreach
 | `POST` | `/campaign/StopLeadInCampaign` | Stop lead in campaign |
 | `POST` | `/campaign/GetLeadsFromCampaign` | Get leads in campaign |
 | `POST` | `/campaign/GetCampaignsForLead` | Get campaigns for lead |
+| `PATCH` | `/campaign/UpdateLeadCustomFields/campaigns/{campaignId}/leads/custom-fields` | Update a campaign lead&#x27;s custom fields |
 | `POST` | `/inbox/GetConversationsV2` | Get conversations |
+| `POST` | `/inbox/GetConversationsV3` | Get conversations (cursor-paged) |
 | `GET` | `/inbox/GetChatroom/{accountId}/{conversationId}` | Get chatroom (single conversation thread) |
 | `POST` | `/inbox/SendMessage` | Send message in conversation |
 | `POST` | `/inbox/SetSeenStatus` | Set conversation seen status |
 | `POST` | `/li_account/GetAll` | List connected LinkedIn accounts |
 | `GET` | `/li_account/GetById` | Get connected LinkedIn account by ID |
+| `GET` | `/li_account/GetAccountStatus/{accountId}` | Get sender account connection status |
+| `POST` | `/li_account/Reconnect` | Reconnect sender account |
+| `POST` | `/li_account/ReloginSalesNavigator` | Re-authenticate Sales Navigator |
+| `POST` | `/li_account/ReloginRecruiter` | Re-authenticate Recruiter |
+| `POST` | `/li_account/Resync` | Resync sender account profile |
+| `GET` | `/li_account/GetProxyCountries` | List proxy countries |
+| `POST` | `/li_account/UpdateProxy` | Update sender account proxy |
+| `POST` | `/li_account/UpdateInboxConfiguration` | Update sender inbox sync |
+| `DELETE` | `/li_account/RemoveAccount/{accountId}` | Remove sender account |
 | `POST` | `/list/GetAll` | List lead/company lists |
 | `GET` | `/list/GetById` | Get list by ID |
 | `POST` | `/list/CreateEmptyList` | Create empty list |
@@ -131,11 +146,20 @@ https://api.superagnt.com/v1/connections/heyreach
 | `DELETE` | `/list/DeleteLeadsFromList` | Delete leads from list by member ID |
 | `DELETE` | `/list/DeleteLeadsFromListByProfileUrl` | Delete leads from list by profile URL |
 | `POST` | `/list/GetListsForLead` | Get lists a lead belongs to |
+| `PATCH` | `/list/UpdateLeadCustomFields/lists/{listId}/leads/custom-fields` | Update a list lead&#x27;s custom fields |
 | `POST` | `/lead/GetLead` | Get lead by profile URL |
 | `POST` | `/lead/AddTags` | Add tags to lead |
 | `POST` | `/lead/ReplaceTags` | Replace lead tags |
 | `POST` | `/lead/GetTags` | Get tags for a lead |
 | `POST` | `/lead_tags/CreateTags` | Create workspace lead tags |
+| `POST` | `/blacklist/GetLeads` | List blacklisted leads |
+| `POST` | `/blacklist/AddLeads` | Blacklist leads |
+| `POST` | `/blacklist/RemoveLeads` | Remove blacklisted leads |
+| `POST` | `/blacklist/GetCompanies` | List blacklisted companies |
+| `POST` | `/blacklist/AddCompanies` | Blacklist companies |
+| `POST` | `/blacklist/RemoveCompanies` | Remove blacklisted companies |
+| `POST` | `/enrichment/enrich-email` | Start an email enrichment |
+| `GET` | `/enrichment/enrich-email/check-job/{jobId}` | Check an email enrichment |
 | `POST` | `/stats/GetOverallStats` | Get overall stats |
 | `POST` | `/stats/GetOverallStatsByCampaign` | Get overall stats grouped by campaign |
 | `POST` | `/MyNetwork/GetMyNetworkForSender` | Get sender&#x27;s LinkedIn network |
@@ -156,6 +180,9 @@ https://api.superagnt.com/v1/connections/heyreach
 | `POST` | `/management/organizations/users/invite/admins` | Invite admins |
 | `POST` | `/management/organizations/users/invite/managers` | Invite managers |
 | `POST` | `/management/organizations/users/invite/members` | Invite members |
+| `POST` | `/management/organizations/linkedin-accounts` | List sender accounts across workspaces |
+| `DELETE` | `/management/organizations/linkedin-accounts/{linkedInAccountId}` | Delete a sender account (organization) |
+| `POST` | `/management/organizations/linkedin-accounts/MoveToWorkspace` | Move a sender account to another workspace |
 
 ## Tool Schemas
 
@@ -184,23 +211,23 @@ to an API endpoint under the base URL.
       "properties": {
         "offset": {
           "type": "integer",
-          "description": "Zero-based offset into the result set."
+          "description": "Number of records to skip."
         },
         "limit": {
           "type": "integer",
-          "description": "Maximum number of campaigns to return."
+          "description": "Page size, at most 100."
         },
         "keyword": {
           "type": "string",
-          "description": "Optional free-text filter applied to campaign names."
+          "description": "Matches campaign names."
         },
         "statuses": {
           "type": "array",
-          "description": "Optional list of campaign statuses to include."
+          "description": "Only campaigns in these statuses."
         },
         "accountIds": {
           "type": "array",
-          "description": "Optional list of LinkedIn sender account IDs to filter campaigns by."
+          "description": "Only campaigns using these sender accounts."
         }
       }
     }
@@ -287,15 +314,39 @@ to an API endpoint under the base URL.
       "properties": {
         "name": {
           "type": "string",
-          "description": "Display name for the new campaign."
+          "description": "Campaign name, 1-50 characters."
         },
         "linkedInUserListId": {
           "type": "integer",
-          "description": "ID of the existing lead list (`USER_LIST`) to back the campaign. Omit when the campaign should be created with an empty list to be populated via `/campaign/AddLeadsToCampaignV2`."
+          "description": "The lead list (`USER_LIST`) the campaign reads leads from."
         },
         "linkedInAccountIds": {
           "type": "array",
-          "description": "IDs of the connected LinkedIn sender accounts that should run this campaign."
+          "description": "Sender accounts that run the campaign; each must be connected with valid auth."
+        },
+        "excludeContactedFromOtherCampaigns": {
+          "type": "boolean",
+          "description": "Skip leads already in any other campaign."
+        },
+        "excludeHasOtherAccConversations": {
+          "type": "boolean",
+          "description": "Skip leads who already have a conversation with another sender account."
+        },
+        "excludeContactedFromSenderInOtherCampaign": {
+          "type": "boolean",
+          "description": "Skip leads the campaign's senders already contacted from another campaign."
+        },
+        "excludeListId": {
+          "type": "integer",
+          "description": "A lead list whose members are always skipped; must differ from `linkedInUserListId`."
+        },
+        "excludeFromLeadBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads on the workspace's lead blacklist (`/blacklist/GetLeads`)."
+        },
+        "excludeFromCompanyBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads whose company is on the workspace's company blacklist (`/blacklist/GetCompanies`)."
         },
         "schedule": {
           "type": "string",
@@ -308,9 +359,8 @@ to an API endpoint under the base URL.
       },
       "required": [
         "name",
-        "linkedInAccountIds",
-        "schedule",
-        "sequence"
+        "linkedInUserListId",
+        "linkedInAccountIds"
       ]
     }
   },
@@ -324,40 +374,49 @@ to an API endpoint under the base URL.
       "properties": {
         "campaignIdForTemplate": {
           "type": "integer",
-          "description": "ID of the existing campaign whose schedule/sequence/settings should be cloned."
+          "description": "The campaign whose sequence and schedule are copied."
         },
         "name": {
           "type": "string",
-          "description": "Display name for the new campaign."
+          "description": "Campaign name, 1-50 characters."
         },
         "linkedInUserListId": {
           "type": "integer",
-          "description": "ID of the lead list (`USER_LIST`) to back the new campaign."
+          "description": "The lead list (`USER_LIST`) for the new campaign."
         },
         "linkedInAcccountIdsForCampaign": {
           "type": "array",
-          "description": "IDs of the connected LinkedIn sender accounts that should run the new campaign. (Note: spelling `linkedInAcccountIdsForCampaign` matches the upstream API.)"
+          "description": "Sender accounts that run the new campaign. (The triple `c` matches HeyReach's API.)"
         },
         "excludeContactedFromOtherCampaigns": {
           "type": "boolean",
-          "description": "Skip leads that have been contacted by any other campaign in the workspace."
+          "description": "Skip leads already in any other campaign."
         },
         "excludeHasOtherAccConversations": {
           "type": "boolean",
-          "description": "Skip leads who already have an open conversation with another connected LinkedIn account in the workspace."
+          "description": "Skip leads who already have a conversation with another sender account."
         },
         "excludeContactedFromSenderInOtherCampaign": {
           "type": "boolean",
-          "description": "Skip leads previously contacted by this campaign's sender from any other campaign."
+          "description": "Skip leads the campaign's senders already contacted from another campaign."
         },
         "excludeListId": {
           "type": "integer",
-          "description": "Optional ID of an exclusion list — leads present in this list will be skipped."
+          "description": "A lead list whose members are always skipped; must differ from `linkedInUserListId`."
+        },
+        "excludeFromLeadBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads on the workspace's lead blacklist (`/blacklist/GetLeads`)."
+        },
+        "excludeFromCompanyBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads whose company is on the workspace's company blacklist (`/blacklist/GetCompanies`)."
         }
       },
       "required": [
         "campaignIdForTemplate",
         "name",
+        "linkedInUserListId",
         "linkedInAcccountIdsForCampaign"
       ]
     }
@@ -372,35 +431,45 @@ to an API endpoint under the base URL.
       "properties": {
         "campaignId": {
           "type": "integer",
-          "description": "campaignId"
+          "description": "The campaign."
         },
         "name": {
           "type": "string",
-          "description": "name"
+          "description": "Campaign name, 1-50 characters."
         },
         "linkedInUserListId": {
           "type": "integer",
-          "description": "ID of the lead list backing this campaign."
+          "description": "The campaign's lead list (`USER_LIST`); send the current one to keep it."
         },
         "excludeContactedFromOtherCampaigns": {
           "type": "boolean",
-          "description": "excludeContactedFromOtherCampaigns"
+          "description": "Skip leads already in any other campaign."
         },
         "excludeHasOtherAccConversations": {
           "type": "boolean",
-          "description": "excludeHasOtherAccConversations"
+          "description": "Skip leads who already have a conversation with another sender account."
         },
         "excludeContactedFromSenderInOtherCampaign": {
           "type": "boolean",
-          "description": "excludeContactedFromSenderInOtherCampaign"
+          "description": "Skip leads the campaign's senders already contacted from another campaign."
         },
         "excludeListId": {
           "type": "integer",
-          "description": "Optional exclusion list ID. Pass `null` to clear."
+          "description": "A lead list whose members are always skipped; must differ from `linkedInUserListId`."
+        },
+        "excludeFromLeadBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads on the workspace's lead blacklist (`/blacklist/GetLeads`)."
+        },
+        "excludeFromCompanyBlacklist": {
+          "type": "boolean",
+          "description": "Skip leads whose company is on the workspace's company blacklist (`/blacklist/GetCompanies`)."
         }
       },
       "required": [
-        "campaignId"
+        "campaignId",
+        "name",
+        "linkedInUserListId"
       ]
     }
   },
@@ -451,6 +520,52 @@ to an API endpoint under the base URL.
     }
   },
   {
+    "name": "superagnt_connection_heyreach_campaign_add_accounts",
+    "description": "Add sender accounts to campaign",
+    "method": "POST",
+    "path": "/campaign/AddLinkedInAccountsToCampaign",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "campaignId": {
+          "type": "integer",
+          "description": "The campaign."
+        },
+        "linkedInAccountIds": {
+          "type": "array",
+          "description": "Sender accounts to add."
+        }
+      },
+      "required": [
+        "campaignId",
+        "linkedInAccountIds"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_campaign_remove_accounts",
+    "description": "Remove sender accounts from campaign",
+    "method": "POST",
+    "path": "/campaign/RemoveLinkedInAccountsFromCampaign",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "campaignId": {
+          "type": "integer",
+          "description": "The campaign."
+        },
+        "linkedInAccountIds": {
+          "type": "array",
+          "description": "Sender accounts to remove."
+        }
+      },
+      "required": [
+        "campaignId",
+        "linkedInAccountIds"
+      ]
+    }
+  },
+  {
     "name": "superagnt_connection_heyreach_campaign_update_sequence",
     "description": "Update campaign sequence",
     "method": "POST",
@@ -483,7 +598,7 @@ to an API endpoint under the base URL.
       "properties": {
         "campaignId": {
           "type": "integer",
-          "description": "campaignId"
+          "description": "The campaign."
         }
       },
       "required": [
@@ -506,6 +621,14 @@ to an API endpoint under the base URL.
         "accountLeadPairs": {
           "type": "array",
           "description": "List of `{ lead, linkedInAccountId }` pairs. `linkedInAccountId` selects which connected sender account should own the outreach for that lead and must be one of the campaign's assigned sender accounts."
+        },
+        "resumePausedCampaign": {
+          "type": "boolean",
+          "description": "When true and the campaign is `PAUSED`, HeyReach resumes the campaign before adding the leads. Send `false` unless the operator asked for a resume."
+        },
+        "resumeFinishedCampaign": {
+          "type": "boolean",
+          "description": "When true and the campaign is `FINISHED`, HeyReach resumes it before adding the leads."
         }
       },
       "required": [
@@ -532,11 +655,11 @@ to an API endpoint under the base URL.
         },
         "resumeFinishedCampaign": {
           "type": "boolean",
-          "description": "If true and the campaign is `FINISHED`, the API will resume it before appending leads."
+          "description": "When true and the campaign is `FINISHED`, HeyReach resumes it before adding the leads."
         },
         "resumePausedCampaign": {
           "type": "boolean",
-          "description": "If true and the campaign is `PAUSED`, the API will resume it before appending leads."
+          "description": "When true and the campaign is `PAUSED`, HeyReach resumes the campaign before adding the leads. Send `false` unless the operator asked for a resume."
         }
       },
       "required": [
@@ -581,7 +704,7 @@ to an API endpoint under the base URL.
       "properties": {
         "campaignId": {
           "type": "integer",
-          "description": "campaignId"
+          "description": "The campaign."
         },
         "offset": {
           "type": "integer",
@@ -589,7 +712,7 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 100."
         },
         "timeFrom": {
           "type": "string",
@@ -601,7 +724,7 @@ to an API endpoint under the base URL.
         },
         "timeFilter": {
           "type": "string",
-          "description": "Which lead timestamp `timeFrom`/`timeTo` apply to."
+          "description": "Which timestamp `timeFrom`/`timeTo` filter: `CreationTime`, `LastActionTakenTime`, `FailedTime`, `LastActionTakenOrFailedTime`, or `Everywhere` (no time filter, the default)."
         }
       },
       "required": [
@@ -641,6 +764,34 @@ to an API endpoint under the base URL.
     }
   },
   {
+    "name": "superagnt_connection_heyreach_campaign_update_lead_fields",
+    "description": "Update a campaign lead's custom fields",
+    "method": "PATCH",
+    "path": "/campaign/UpdateLeadCustomFields/campaigns/{campaignId}/leads/custom-fields",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "campaignId": {
+          "type": "integer",
+          "description": "The campaign."
+        },
+        "leadMemberIdOrUrl": {
+          "type": "string",
+          "description": "The lead: its LinkedIn member id (`linkedin_id`) or its profile URL."
+        },
+        "customFields": {
+          "type": "object",
+          "description": "Field name → value. An existing field is updated, a new one created, and a null or empty value deletes the field. At most 100 fields; names up to 128 characters, values up to 2048."
+        }
+      },
+      "required": [
+        "campaignId",
+        "leadMemberIdOrUrl",
+        "customFields"
+      ]
+    }
+  },
+  {
     "name": "superagnt_connection_heyreach_inbox_get_conversations_v2",
     "description": "Get conversations",
     "method": "POST",
@@ -650,15 +801,46 @@ to an API endpoint under the base URL.
       "properties": {
         "offset": {
           "type": "integer",
-          "description": "offset"
+          "description": "Number of records to skip."
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 100."
         },
         "filters": {
           "type": "object",
-          "description": "Optional filter object."
+          "description": "Optional filters."
+        }
+      }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_inbox_get_conversations_v3",
+    "description": "Get conversations (cursor-paged)",
+    "method": "POST",
+    "path": "/inbox/GetConversationsV3",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Page size, at most 100."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "The previous page's `nextCursor`; omit or null for the first page. An edited cursor is a 400."
+        },
+        "from": {
+          "type": "string",
+          "description": "Lower bound on `lastMessageAt` (UTC)."
+        },
+        "to": {
+          "type": "string",
+          "description": "Upper bound on `lastMessageAt` (UTC); defaults to now."
+        },
+        "filters": {
+          "type": "object",
+          "description": "Optional filters."
         }
       }
     }
@@ -677,7 +859,7 @@ to an API endpoint under the base URL.
         },
         "conversationId": {
           "type": "string",
-          "description": "Opaque conversation/chatroom identifier (as returned by `/inbox/GetConversationsV2`)."
+          "description": "The conversation's `id` (from `/inbox/GetConversationsV2` or `/inbox/GetConversationsV3`)."
         }
       },
       "required": [
@@ -700,11 +882,11 @@ to an API endpoint under the base URL.
         },
         "subject": {
           "type": "string",
-          "description": "Optional InMail subject line. Ignored for non-InMail threads."
+          "description": "Subject line; required by HeyReach and shown only in InMail threads."
         },
         "conversationId": {
           "type": "string",
-          "description": "Opaque conversation/chatroom identifier (as returned by `/inbox/GetConversationsV2`)."
+          "description": "The conversation's `id`."
         },
         "linkedInAccountId": {
           "type": "integer",
@@ -713,6 +895,7 @@ to an API endpoint under the base URL.
       },
       "required": [
         "message",
+        "subject",
         "conversationId",
         "linkedInAccountId"
       ]
@@ -760,11 +943,11 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 100."
         },
         "keyword": {
           "type": "string",
-          "description": "Optional free-text filter applied to the account's display name."
+          "description": "Matches the account's name."
         }
       }
     }
@@ -788,6 +971,174 @@ to an API endpoint under the base URL.
     }
   },
   {
+    "name": "superagnt_connection_heyreach_li_account_get_status",
+    "description": "Get sender account connection status",
+    "method": "GET",
+    "path": "/li_account/GetAccountStatus/{accountId}",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_reconnect",
+    "description": "Reconnect sender account",
+    "method": "POST",
+    "path": "/li_account/Reconnect",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_relogin_navigator",
+    "description": "Re-authenticate Sales Navigator",
+    "method": "POST",
+    "path": "/li_account/ReloginSalesNavigator",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_relogin_recruiter",
+    "description": "Re-authenticate Recruiter",
+    "method": "POST",
+    "path": "/li_account/ReloginRecruiter",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_resync",
+    "description": "Resync sender account profile",
+    "method": "POST",
+    "path": "/li_account/Resync",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_get_proxy_countries",
+    "description": "List proxy countries",
+    "method": "GET",
+    "path": "/li_account/GetProxyCountries",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_update_proxy",
+    "description": "Update sender account proxy",
+    "method": "POST",
+    "path": "/li_account/UpdateProxy",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        },
+        "proxyCountryCode": {
+          "type": "string",
+          "description": "Country of the HeyReach-managed proxy, e.g. `US`."
+        }
+      },
+      "required": [
+        "accountId",
+        "proxyCountryCode"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_update_inbox_config",
+    "description": "Update sender inbox sync",
+    "method": "POST",
+    "path": "/li_account/UpdateInboxConfiguration",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account (`/li_account/GetAll`)."
+        },
+        "inboxScrapeMode": {
+          "type": "string",
+          "description": "inboxScrapeMode"
+        }
+      },
+      "required": [
+        "accountId",
+        "inboxScrapeMode"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_li_account_remove",
+    "description": "Remove sender account",
+    "method": "DELETE",
+    "path": "/li_account/RemoveAccount/{accountId}",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "description": "The sender account."
+        },
+        "force": {
+          "type": "boolean",
+          "description": "Take the account off its active campaigns first."
+        }
+      },
+      "required": [
+        "accountId"
+      ]
+    }
+  },
+  {
     "name": "superagnt_connection_heyreach_list_get_all",
     "description": "List lead/company lists",
     "method": "POST",
@@ -801,7 +1152,7 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 100."
         },
         "keyword": {
           "type": "string",
@@ -809,7 +1160,11 @@ to an API endpoint under the base URL.
         },
         "listType": {
           "type": "string",
-          "description": "Optional filter to restrict to lead lists or company lists."
+          "description": "Only lead lists (`USER_LIST`) or only company lists (`COMPANY_LIST`)."
+        },
+        "campaignIds": {
+          "type": "array",
+          "description": "Only lists used by these campaigns."
         }
       }
     }
@@ -846,7 +1201,7 @@ to an API endpoint under the base URL.
         },
         "type": {
           "type": "string",
-          "description": "Whether this list contains people (`USER_LIST`) or companies (`COMPANY_LIST`)."
+          "description": "`USER_LIST` for leads or `COMPANY_LIST` for companies."
         }
       },
       "required": [
@@ -873,7 +1228,7 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 1000."
         },
         "keyword": {
           "type": "string",
@@ -919,7 +1274,7 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 1000."
         },
         "keyword": {
           "type": "string",
@@ -1049,9 +1404,37 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 1000."
         }
       }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_list_update_lead_fields",
+    "description": "Update a list lead's custom fields",
+    "method": "PATCH",
+    "path": "/list/UpdateLeadCustomFields/lists/{listId}/leads/custom-fields",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "listId": {
+          "type": "integer",
+          "description": "The lead list."
+        },
+        "leadMemberIdOrUrl": {
+          "type": "string",
+          "description": "The lead: its LinkedIn member id (`linkedin_id`) or its profile URL."
+        },
+        "customFields": {
+          "type": "object",
+          "description": "Field name → value. An existing field is updated, a new one created, and a null or empty value deletes the field. At most 100 fields; names up to 128 characters, values up to 2048."
+        }
+      },
+      "required": [
+        "listId",
+        "leadMemberIdOrUrl",
+        "customFields"
+      ]
     }
   },
   {
@@ -1169,6 +1552,169 @@ to an API endpoint under the base URL.
     }
   },
   {
+    "name": "superagnt_connection_heyreach_blacklist_get_leads",
+    "description": "List blacklisted leads",
+    "method": "POST",
+    "path": "/blacklist/GetLeads",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "description": "Number of records to skip."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Page size, at most 100."
+        },
+        "search": {
+          "type": "string",
+          "description": "Case-insensitive match on name, email, profile URL and LinkedIn member id."
+        },
+        "matchingStatus": {
+          "type": "string",
+          "description": "Only entries that resolved this way."
+        }
+      }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_blacklist_add_leads",
+    "description": "Blacklist leads",
+    "method": "POST",
+    "path": "/blacklist/AddLeads",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "leads": {
+          "type": "array",
+          "description": "1-100 entries, each with at least one identifier."
+        }
+      },
+      "required": [
+        "leads"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_blacklist_remove_leads",
+    "description": "Remove blacklisted leads",
+    "method": "POST",
+    "path": "/blacklist/RemoveLeads",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "description": "Entry ids, 1-100."
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_blacklist_get_companies",
+    "description": "List blacklisted companies",
+    "method": "POST",
+    "path": "/blacklist/GetCompanies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "description": "Number of records to skip."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Page size, at most 100."
+        },
+        "search": {
+          "type": "string",
+          "description": "Case-insensitive match on company name and company URL."
+        },
+        "matchingStatus": {
+          "type": "string",
+          "description": "Only entries that resolved this way."
+        }
+      }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_blacklist_add_companies",
+    "description": "Blacklist companies",
+    "method": "POST",
+    "path": "/blacklist/AddCompanies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "companies": {
+          "type": "array",
+          "description": "1-100 entries, each with `url`, `name` or both."
+        }
+      },
+      "required": [
+        "companies"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_blacklist_remove_companies",
+    "description": "Remove blacklisted companies",
+    "method": "POST",
+    "path": "/blacklist/RemoveCompanies",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "description": "Entry ids, 1-100."
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_enrich_email",
+    "description": "Start an email enrichment",
+    "method": "POST",
+    "path": "/enrichment/enrich-email",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "profileUrl": {
+          "type": "string",
+          "description": "The lead's LinkedIn profile URL."
+        },
+        "leadMemberId": {
+          "type": "string",
+          "description": "An existing lead's `linkedin_id`."
+        }
+      }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_enrich_email_check_job",
+    "description": "Check an email enrichment",
+    "method": "GET",
+    "path": "/enrichment/enrich-email/check-job/{jobId}",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "integer",
+          "description": "The `jobId` from `/enrichment/enrich-email`."
+        }
+      },
+      "required": [
+        "jobId"
+      ]
+    }
+  },
+  {
     "name": "superagnt_connection_heyreach_stats_get_overall",
     "description": "Get overall stats",
     "method": "POST",
@@ -1186,13 +1732,17 @@ to an API endpoint under the base URL.
         },
         "campaignIds": {
           "type": "array",
-          "description": "Restrict the aggregation to these campaign IDs."
+          "description": "The campaigns to count, or `[]` for every campaign. Required."
         },
         "accountIds": {
           "type": "array",
-          "description": "Restrict the aggregation to these connected LinkedIn sender accounts."
+          "description": "The connected LinkedIn sender accounts to count, or `[]` for every sender. Required."
         }
-      }
+      },
+      "required": [
+        "accountIds",
+        "campaignIds"
+      ]
     }
   },
   {
@@ -1213,13 +1763,17 @@ to an API endpoint under the base URL.
         },
         "campaignIds": {
           "type": "array",
-          "description": "campaignIds"
+          "description": "The campaigns to count, or `[]` for every campaign. Required."
         },
         "accountIds": {
           "type": "array",
-          "description": "accountIds"
+          "description": "The connected LinkedIn sender accounts to count, or `[]` for every sender. Required."
         }
-      }
+      },
+      "required": [
+        "accountIds",
+        "campaignIds"
+      ]
     }
   },
   {
@@ -1232,19 +1786,15 @@ to an API endpoint under the base URL.
       "properties": {
         "senderId": {
           "type": "integer",
-          "description": "ID of the connected LinkedIn sender account whose network should be returned."
+          "description": "The sender account (`/li_account/GetAll`)."
         },
-        "offset": {
+        "pageNumber": {
           "type": "integer",
-          "description": "offset"
+          "description": "Zero-based page number."
         },
-        "limit": {
+        "pageSize": {
           "type": "integer",
-          "description": "limit"
-        },
-        "keyword": {
-          "type": "string",
-          "description": "Optional free-text filter applied to first/last name and headline."
+          "description": "Page size, at most 100."
         }
       },
       "required": [
@@ -1288,7 +1838,7 @@ to an API endpoint under the base URL.
       "properties": {
         "webhookName": {
           "type": "string",
-          "description": "webhookName"
+          "description": "3-25 characters."
         },
         "webhookUrl": {
           "type": "string",
@@ -1300,11 +1850,11 @@ to an API endpoint under the base URL.
         },
         "campaignIds": {
           "type": "array",
-          "description": "Optional — restrict to events originated by these campaigns. Empty/omitted means all campaigns."
+          "description": "Campaigns to listen to; empty or omitted means every campaign."
         },
         "customHeaders": {
-          "type": "object",
-          "description": "Optional custom HTTP headers to include on every webhook delivery (e.g. for authentication)."
+          "type": "array",
+          "description": "Extra HTTP headers HeyReach sends with each delivery, as `[{ name, value }]` (the shape `/webhooks/GetWebhookById` returns with `includeCustomHeaders`). HeyReach does not document them on writes: read the webhook back with `includeCustomHeaders: true` to confirm they were kept."
         }
       },
       "required": [
@@ -1350,7 +1900,7 @@ to an API endpoint under the base URL.
         },
         "limit": {
           "type": "integer",
-          "description": "limit"
+          "description": "Page size, at most 100."
         },
         "includeCustomHeaders": {
           "type": "boolean",
@@ -1373,7 +1923,7 @@ to an API endpoint under the base URL.
         },
         "webhookName": {
           "type": "string",
-          "description": "webhookName"
+          "description": "3-25 characters."
         },
         "webhookUrl": {
           "type": "string",
@@ -1389,11 +1939,11 @@ to an API endpoint under the base URL.
         },
         "isActive": {
           "type": "boolean",
-          "description": "isActive"
+          "description": "false pauses the webhook: HeyReach stops sending its events and the webhook can then be deleted (HeyReach refuses to delete an active one)."
         },
         "customHeaders": {
-          "type": "object",
-          "description": "customHeaders"
+          "type": "array",
+          "description": "Extra HTTP headers HeyReach sends with each delivery, as `[{ name, value }]` (the shape `/webhooks/GetWebhookById` returns with `includeCustomHeaders`). HeyReach does not document them on writes: read the webhook back with `includeCustomHeaders: true` to confirm they were kept."
         }
       },
       "required": [
@@ -1687,6 +2237,78 @@ to an API endpoint under the base URL.
         "emails",
         "workspaceIds",
         "permissions"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_org_li_accounts_get_all",
+    "description": "List sender accounts across workspaces",
+    "method": "POST",
+    "path": "/management/organizations/linkedin-accounts",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "Matches the account's name."
+        },
+        "workspaceIds": {
+          "type": "array",
+          "description": "Only these workspaces; empty or omitted means all."
+        },
+        "offset": {
+          "type": "integer",
+          "description": "Number of records to skip."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Page size, at most 100."
+        }
+      }
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_org_li_account_delete",
+    "description": "Delete a sender account (organization)",
+    "method": "DELETE",
+    "path": "/management/organizations/linkedin-accounts/{linkedInAccountId}",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "linkedInAccountId": {
+          "type": "integer",
+          "description": "The sender account."
+        },
+        "forceDelete": {
+          "type": "boolean",
+          "description": "Take the account off its active campaigns first."
+        }
+      },
+      "required": [
+        "linkedInAccountId"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_connection_heyreach_org_li_account_move",
+    "description": "Move a sender account to another workspace",
+    "method": "POST",
+    "path": "/management/organizations/linkedin-accounts/MoveToWorkspace",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "linkedInAccountId": {
+          "type": "integer",
+          "description": "The sender account."
+        },
+        "workspaceId": {
+          "type": "integer",
+          "description": "The destination workspace."
+        }
+      },
+      "required": [
+        "linkedInAccountId",
+        "workspaceId"
       ]
     }
   }

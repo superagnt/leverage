@@ -465,7 +465,7 @@ to an API endpoint under the base URL.
         },
         "sort": {
           "type": "string",
-          "description": "you can just select one item from below:\n`relevance`\n`hot`\n`top`\n`new`\n`comments`"
+          "description": "Sort order. Use 'top' to filter by time."
         },
         "subreddit": {
           "type": "string",
@@ -473,7 +473,7 @@ to an API endpoint under the base URL.
         },
         "time": {
           "type": "string",
-          "description": "you can just select one item from below:\n`hour`\n`day`\n`week`\n`month`\n`year`\n`all`"
+          "description": "Time window. Only applies with sort 'top'; any other sort is refused with time set."
         }
       },
       "required": [

@@ -92,6 +92,12 @@ https://api.superagnt.com/v1/data/seo
 | `POST` | `/backlink-gap` | Domains linking to competitors but not you |
 | `POST` | `/page-audit` | Instant on-page audit of a URL |
 | `POST` | `/ai-visibility` | How often LLMs mention a domain |
+| `POST` | `/chatgpt-app-answer` | ChatGPT app answer |
+| `POST` | `/gemini-app-answer` | Gemini app answer |
+| `POST` | `/chatgpt-api-answer` | OpenAI API answer with citations |
+| `POST` | `/claude-api-answer` | Claude API answer with citations |
+| `POST` | `/gemini-api-answer` | Gemini API answer with citations |
+| `POST` | `/perplexity-api-answer` | Perplexity API answer with citations |
 | `POST` | `/tech-stack` | Technologies a website runs |
 | `POST` | `/tech-search` | Find websites by technology |
 
@@ -554,6 +560,198 @@ to an API endpoint under the base URL.
           "description": "Max rows to return. Default 100. Cost scales with rows."
         }
       }
+    }
+  },
+  {
+    "name": "superagnt_seo_chatgpt_app_answer",
+    "description": "ChatGPT app answer",
+    "method": "POST",
+    "path": "/chatgpt-app-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "The question to ask ChatGPT, as a user would type it."
+        },
+        "location_code": {
+          "type": "integer",
+          "description": "Geo target as a location code. Common values: 2840 United States (default), 2826 United Kingdom, 2124 Canada, 2036 Australia, 2276 Germany."
+        },
+        "language_code": {
+          "type": "string",
+          "description": "Two-letter language code, e.g. 'en' (default)."
+        },
+        "force_web_search": {
+          "type": "boolean",
+          "description": "Push ChatGPT to search the web and cite current sources. Citations are still not guaranteed."
+        }
+      },
+      "required": [
+        "keyword"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_seo_gemini_app_answer",
+    "description": "Gemini app answer",
+    "method": "POST",
+    "path": "/gemini-app-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "The question to ask Gemini, as a user would type it."
+        },
+        "location_code": {
+          "type": "integer",
+          "description": "Geo target as a location code. Common values: 2840 United States (default), 2826 United Kingdom, 2124 Canada, 2036 Australia, 2276 Germany."
+        },
+        "language_code": {
+          "type": "string",
+          "description": "Two-letter language code, e.g. 'en' (default)."
+        }
+      },
+      "required": [
+        "keyword"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_seo_chatgpt_api_answer",
+    "description": "OpenAI API answer with citations",
+    "method": "POST",
+    "path": "/chatgpt-api-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_prompt": {
+          "type": "string",
+          "description": "The question to ask the model."
+        },
+        "model_name": {
+          "type": "string",
+          "description": "The model to ask: gpt-4o-mini, gpt-4o, gpt-5-mini (default gpt-4o-mini)."
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "description": "Cap on the answer's length in tokens, 16-2048 (default 1024). Web search can push a model slightly past it. gpt-5-mini needs at least 1024."
+        },
+        "web_search": {
+          "type": "boolean",
+          "description": "Let the model search the web and cite sources (default true). Citations are still not guaranteed."
+        },
+        "force_web_search": {
+          "type": "boolean",
+          "description": "Push the model to search the web before answering. Needs `web_search`; citations are still not guaranteed."
+        },
+        "web_search_country_iso_code": {
+          "type": "string",
+          "description": "Two-letter country code the web search runs from, e.g. 'US'."
+        }
+      },
+      "required": [
+        "user_prompt"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_seo_claude_api_answer",
+    "description": "Claude API answer with citations",
+    "method": "POST",
+    "path": "/claude-api-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_prompt": {
+          "type": "string",
+          "description": "The question to ask the model."
+        },
+        "model_name": {
+          "type": "string",
+          "description": "The model to ask: claude-haiku-4-5, claude-sonnet-4-5 (default claude-haiku-4-5)."
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "description": "Cap on the answer's length in tokens, 16-2048 (default 1024). Web search can push a model slightly past it."
+        },
+        "web_search": {
+          "type": "boolean",
+          "description": "Let the model search the web and cite sources (default true). Citations are still not guaranteed."
+        },
+        "force_web_search": {
+          "type": "boolean",
+          "description": "Push the model to search the web before answering. Needs `web_search`; citations are still not guaranteed."
+        },
+        "web_search_country_iso_code": {
+          "type": "string",
+          "description": "Two-letter country code the web search runs from, e.g. 'US'."
+        }
+      },
+      "required": [
+        "user_prompt"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_seo_gemini_api_answer",
+    "description": "Gemini API answer with citations",
+    "method": "POST",
+    "path": "/gemini-api-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_prompt": {
+          "type": "string",
+          "description": "The question to ask the model."
+        },
+        "model_name": {
+          "type": "string",
+          "description": "The model to ask: gemini-2.5-flash-lite, gemini-2.5-flash, gemini-2.0-flash (default gemini-2.5-flash-lite)."
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "description": "Cap on the answer's length in tokens, 16-2048 (default 1024). Web search can push a model slightly past it."
+        },
+        "web_search": {
+          "type": "boolean",
+          "description": "Let the model search the web and cite sources (default true). Citations are still not guaranteed."
+        }
+      },
+      "required": [
+        "user_prompt"
+      ]
+    }
+  },
+  {
+    "name": "superagnt_seo_perplexity_api_answer",
+    "description": "Perplexity API answer with citations",
+    "method": "POST",
+    "path": "/perplexity-api-answer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "user_prompt": {
+          "type": "string",
+          "description": "The question to ask the model."
+        },
+        "model_name": {
+          "type": "string",
+          "description": "The model to ask: sonar, sonar-pro (default sonar)."
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "description": "Cap on the answer's length in tokens, 16-2048 (default 1024). Web search can push a model slightly past it."
+        },
+        "web_search_country_iso_code": {
+          "type": "string",
+          "description": "Two-letter country code the web search runs from, e.g. 'US'. Sonar models always search the web."
+        }
+      },
+      "required": [
+        "user_prompt"
+      ]
     }
   },
   {

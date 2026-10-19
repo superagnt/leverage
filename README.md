@@ -66,7 +66,7 @@ browser approval, the consent screen doubles as signup), or grab a key at
 | [`linkedin-data`](skills/core/linkedin-data/SKILL.md) | LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional netwo |
 | [`reddit-data`](skills/core/reddit-data/SKILL.md) | Reddit posts, comments, and subreddit data for agents — community research and sentiment as structured JSON. |
 | [`seo-data`](skills/core/seo-data/SKILL.md) | SEO and search intelligence for agents: live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visib |
-| [`social-data`](skills/core/social-data/SKILL.md) | Unified social data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook — structured JSON, no s |
+| [`social-data`](skills/core/social-data/SKILL.md) | Unified data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook, plus web scraping, SEO data,  |
 | [`tiktok-data`](skills/core/tiktok-data/SKILL.md) | TikTok videos, creators, sounds, and trend data for agents — content and creator research as structured JSON. |
 | [`web-scraping`](skills/core/web-scraping/SKILL.md) | Scrape, search, and map the web for agents — clean markdown, structured JSON, and site URL discovery. |
 | [`x-twitter-data`](skills/core/x-twitter-data/SKILL.md) | X posts, profiles, followers, and search for agents — audience research and social listening as structured JSON. |

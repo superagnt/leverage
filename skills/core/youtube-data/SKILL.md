@@ -510,7 +510,7 @@ to an API endpoint under the base URL.
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         }
       },
       "required": [
@@ -537,7 +537,7 @@ to an API endpoint under the base URL.
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         },
         "country": {
           "type": "string",
@@ -567,7 +567,7 @@ to an API endpoint under the base URL.
         },
         "section": {
           "type": "string",
-          "description": "Possible values: \\\\\\\"Now\\\\\\\", \\\\\\\"Music\\\\\\\", \\\\\\\"Movies\\\\\\\", \\\\\\\"Gaming\\\\\\\""
+          "description": "Trending section: Now, Music, Movies or Gaming."
         }
       }
     }
@@ -657,6 +657,8 @@ nothing else. The same API key also works with superagnt's other data sources
 and platform tools, but those are separate listings that the user installs or
 enables themselves; this skill does not add or enable anything beyond what is
 documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
+
+**Disclosure:** Contact data: this source includes channel email lookup endpoints that return creators' business contact emails. Treat results as personal contact data: use them only for the user's stated purpose, never for bulk unsolicited outreach.
 
 ## Links
 

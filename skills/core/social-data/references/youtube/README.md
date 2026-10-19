@@ -453,7 +453,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         }
       },
       "required": [
@@ -480,7 +480,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "order_by": {
           "type": "string",
-          "description": "Possible values: \\\\\\\\\\\\\\\"last_hour\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"today\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_week\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_month\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"this_year\\\\\\\\\\\\\\\""
+          "description": "Upload date window: last_hour, today, this_week, this_month or this_year."
         },
         "country": {
           "type": "string",
@@ -510,7 +510,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "section": {
           "type": "string",
-          "description": "Possible values: \\\\\\\"Now\\\\\\\", \\\\\\\"Music\\\\\\\", \\\\\\\"Movies\\\\\\\", \\\\\\\"Gaming\\\\\\\""
+          "description": "Trending section: Now, Music, Movies or Gaming."
         }
       }
     }
