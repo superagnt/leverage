@@ -39,7 +39,7 @@ https://mcp.superagnt.com/mcp/company-enrichment
 That URL publishes full OAuth discovery: an MCP-capable client needs the URL
 and nothing else (approve once in the browser). On clients that hold a bearer
 instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
-https://mcp.superagnt.com/agent-setup/prompt.md
+https://www.superagnt.com/install?facet=company-enrichment
 
 This skill document stays fully usable on curl-only environments — everything
 below works with just the API key.

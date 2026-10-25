@@ -46,7 +46,7 @@ https://mcp.superagnt.com/mcp/social-data
 The URL publishes full OAuth discovery — an MCP-capable client needs the URL
 and nothing else (approve once in the browser). Bearer-only clients add an
 `Authorization: Bearer` header. Per-client setup lines:
-https://mcp.superagnt.com/agent-setup/prompt.md
+https://www.superagnt.com/install?facet=social-data
 
 Everything below works on curl-only environments with just the API key.
 

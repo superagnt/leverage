@@ -38,7 +38,7 @@ https://mcp.superagnt.com/mcp
 
 The URL publishes full OAuth discovery — an MCP-capable client needs the URL
 and nothing else (approve once in the browser). Per-client setup lines:
-https://mcp.superagnt.com/agent-setup/prompt.md
+https://www.superagnt.com/install
 
 Everything below works on curl-only environments with just the API key.
 
