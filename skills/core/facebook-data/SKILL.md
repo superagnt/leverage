@@ -23,7 +23,7 @@ metadata:
 
 # Facebook Data
 
-The superagnt_ Facebook API wraps Facebook surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt_ with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to page and group posts, marketplace listings, video content, and ad discovery with predictable billing and operational simplicity.
+The superagnt Facebook API wraps Facebook surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to page and group posts, marketplace listings, video content, and ad discovery with predictable billing and operational simplicity.
 
 ## Alternative install: the scoped MCP server
 

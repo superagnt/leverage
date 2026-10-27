@@ -23,7 +23,7 @@ metadata:
 
 # TikTok Data
 
-The superagnt_ TikTok API wraps TikTok surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt_ with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to video details, creator profiles, and search across accounts and videos with predictable billing and operational simplicity.
+The superagnt TikTok API wraps TikTok surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to video details, creator profiles, and search across accounts and videos with predictable billing and operational simplicity.
 
 ## Alternative install: the scoped MCP server
 

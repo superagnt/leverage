@@ -23,7 +23,7 @@ metadata:
 
 # Web Scraping
 
-The superagnt_ Web API gives agents reliable access to the live web through a single integration. Fetch the content of any public page as clean main-content markdown or structured JSON, run a web search and pull the full content of each result in one call, and discover every URL on a site before scraping it. JavaScript-rendered pages are handled for you. Instead of managing scraping infrastructure, proxies, and rate limits yourself, you call superagnt_ with one credential and consume agent-ready JSON with predictable, usage-based credit pricing.
+The superagnt Web API gives agents reliable access to the live web through a single integration. Fetch the content of any public page as clean main-content markdown or structured JSON, run a web search and pull the full content of each result in one call, and discover every URL on a site before scraping it. JavaScript-rendered pages are handled for you. Instead of managing scraping infrastructure, proxies, and rate limits yourself, you call superagnt with one credential and consume agent-ready JSON with predictable, usage-based credit pricing.
 
 ## Alternative install: the scoped MCP server
 

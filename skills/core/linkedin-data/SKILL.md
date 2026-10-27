@@ -23,7 +23,7 @@ metadata:
 
 # LinkedIn Data
 
-The superagnt_ LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
+The superagnt LinkedIn Data API provides comprehensive, real-time access to LinkedIn&#x27;s professional network data through a single unified endpoint. Instead of juggling multiple vendor accounts, API keys, and billing dashboards, you get one key and one credit balance that covers company enrichment, profile lookups, job board data, post analytics, article retrieval, and location search. Every response is structured JSON optimized for downstream AI processing — no scraping, no browser automation, no CAPTCHA solving. Whether you&#x27;re building an AI sales agent that needs account research before outreach, a recruiting copilot that assembles candidate dossiers, or a market intelligence pipeline that tracks competitor hiring trends, this API delivers the data your agents need to make informed decisions at scale.
 
 ## Alternative install: the scoped MCP server
 

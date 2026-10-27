@@ -23,7 +23,7 @@ metadata:
 
 # Instagram Data
 
-The superagnt_ Instagram API wraps Instagram surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt_ with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to user profiles, reels, explore, locations, and hashtag media with predictable billing and operational simplicity.
+The superagnt Instagram API wraps Instagram surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to user profiles, reels, explore, locations, and hashtag media with predictable billing and operational simplicity.
 
 ## Alternative install: the scoped MCP server
 

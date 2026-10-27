@@ -23,7 +23,7 @@ metadata:
 
 # X (Twitter) Data
 
-The superagnt_ X API wraps X surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt_ with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to tweets, user profiles, followers, search, and hashtag streams with predictable billing and operational simplicity.
+The superagnt X API wraps X surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to tweets, user profiles, followers, search, and hashtag streams with predictable billing and operational simplicity.
 
 ## Alternative install: the scoped MCP server
 
