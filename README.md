@@ -56,21 +56,21 @@ browser approval, and the consent screen doubles as signup), or grab a key at
 | [`attio-crm`](skills/core/attio-crm/SKILL.md) | Manage Attio CRM records, lists, notes, tasks, and meetings through the superagnt unified API. |
 | [`company-enrichment`](skills/core/company-enrichment/SKILL.md) | Company firmographics, tech stack, headcount, and intelligence from a domain — agent-ready account research. |
 | [`dub-links`](skills/core/dub-links/SKILL.md) | Manage Dub short links, track conversions, and read link attribution analytics through the superagnt unified API. |
-| [`email-finder`](skills/core/email-finder/SKILL.md) | Find and verify work emails from a name and company — waterfall lookup across providers, one call for agents. |
+| [`email-finder`](skills/core/email-finder/SKILL.md) | Find and verify work emails for prospects from a name and company — one call per lookup, and it never reads your inbox. |
 | [`exa-search`](skills/core/exa-search/SKILL.md) | Neural web search, parsed page contents, find-similar, and agentic Q&amp;A over the live web through the superagnt unified API. |
-| [`facebook-data`](skills/core/facebook-data/SKILL.md) | Facebook pages, posts, and group data for agents — brand and market research without scraping. |
+| [`facebook-data`](skills/core/facebook-data/SKILL.md) | Facebook pages, posts, groups, Marketplace listings, and the Ad Library for agents — no Facebook app, review, or login of yours. |
 | [`heyreach-outreach`](skills/core/heyreach-outreach/SKILL.md) | Manage LinkedIn outreach campaigns, leads, lists, inbox conversations, and analytics via HeyReach through the superagnt unified API. |
-| [`instagram-data`](skills/core/instagram-data/SKILL.md) | Instagram profiles, posts, reels, and audience data for agents — influencer and brand research without a headless browser. |
+| [`instagram-data`](skills/core/instagram-data/SKILL.md) | Instagram profiles, posts, reels, and hashtags for agents — influencer and brand research with no Instagram login, Business account, or Meta |
 | [`instantly-outreach`](skills/core/instantly-outreach/SKILL.md) | Manage cold email campaigns, leads, and outreach analytics via Instantly AI through the superagnt unified API. |
 | [`lead-enrichment`](skills/core/lead-enrichment/SKILL.md) | Enrich people and companies from a name, domain, or LinkedIn URL — emails, titles, firmographics, and mobile numbers for agents. |
 | [`linkedin-data`](skills/core/linkedin-data/SKILL.md) | LinkedIn API integration with a single superagnt API key (Bearer token). Fetch company profiles, jobs, people, posts, and professional netwo |
-| [`reddit-data`](skills/core/reddit-data/SKILL.md) | Reddit posts, comments, and subreddit data for agents — community research and sentiment as structured JSON. |
+| [`reddit-data`](skills/core/reddit-data/SKILL.md) | Reddit posts, comments, users, and subreddits for agents — no Reddit app or API approval needed. |
 | [`seo-data`](skills/core/seo-data/SKILL.md) | SEO and search intelligence for agents: live Google results, keyword research, competitor and backlink gaps, page audits and AI answer visib |
 | [`social-data`](skills/core/social-data/SKILL.md) | Unified data API for AI agents. One API key for LinkedIn, YouTube, TikTok, X, Instagram, Reddit, and Facebook, plus web scraping, SEO data,  |
-| [`tiktok-data`](skills/core/tiktok-data/SKILL.md) | TikTok videos, creators, sounds, and trend data for agents — content and creator research as structured JSON. |
+| [`tiktok-data`](skills/core/tiktok-data/SKILL.md) | Public TikTok creator profiles for agents — follower, video, and like counts as structured JSON, with no TikTok key. |
 | [`web-scraping`](skills/core/web-scraping/SKILL.md) | Scrape, search, and map the web for agents — clean markdown, structured JSON, and site URL discovery. |
 | [`x-twitter-data`](skills/core/x-twitter-data/SKILL.md) | X posts, profiles, followers, and search for agents — audience research and social listening as structured JSON. |
-| [`youtube-data`](skills/core/youtube-data/SKILL.md) | YouTube channels, videos, transcripts, and comments for agents — content research and channel intelligence. |
+| [`youtube-data`](skills/core/youtube-data/SKILL.md) | YouTube channels, videos, transcripts, and comments for agents — no Google API key or daily quota to manage. |
 <!-- SKILLS:END -->
 
 ## Packaged skills

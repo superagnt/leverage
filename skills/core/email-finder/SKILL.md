@@ -1,6 +1,6 @@
 ---
 name: email-finder
-description: "Find and verify work emails from a name and company — waterfall lookup across providers, one call for agents."
+description: "Find and verify work emails for prospects from a name and company — one call per lookup, and it never reads your inbox."
 version: 2.0.2
 author: superagnt
 license: MIT-0

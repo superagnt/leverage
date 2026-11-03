@@ -9,7 +9,7 @@ required_environment_variables:
   - SUPERAGNT_API_KEY
 metadata:
   hermes:
-    tags: [web-scraping, crawling, search, data-extraction]
+    tags: [web-scraping, markdown, search, data-extraction]
   openclaw:
     requires:
       env:

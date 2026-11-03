@@ -1,6 +1,6 @@
 ---
 name: reddit-data
-description: "Reddit posts, comments, and subreddit data for agents — community research and sentiment as structured JSON."
+description: "Reddit posts, comments, users, and subreddits for agents — no Reddit app or API approval needed."
 version: 2.0.2
 author: superagnt
 license: MIT-0
@@ -9,7 +9,7 @@ required_environment_variables:
   - SUPERAGNT_API_KEY
 metadata:
   hermes:
-    tags: [reddit-data, community-research, sentiment]
+    tags: [reddit-data, community-research, research]
   openclaw:
     requires:
       env:

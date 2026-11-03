@@ -1,6 +1,6 @@
 ---
 name: facebook-data
-description: "Facebook pages, posts, and group data for agents — brand and market research without scraping."
+description: "Facebook pages, posts, groups, Marketplace listings, and the Ad Library for agents — no Facebook app, review, or login of yours."
 version: 2.0.2
 author: superagnt
 license: MIT-0

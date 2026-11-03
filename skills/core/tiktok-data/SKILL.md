@@ -1,6 +1,6 @@
 ---
 name: tiktok-data
-description: "TikTok videos, creators, sounds, and trend data for agents — content and creator research as structured JSON."
+description: "Public TikTok creator profiles for agents — follower, video, and like counts as structured JSON, with no TikTok key."
 version: 2.0.2
 author: superagnt
 license: MIT-0
@@ -9,7 +9,7 @@ required_environment_variables:
   - SUPERAGNT_API_KEY
 metadata:
   hermes:
-    tags: [tiktok-data, creator-research, trends]
+    tags: [tiktok-data, creator-research, social-media]
   openclaw:
     requires:
       env:
