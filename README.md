@@ -85,6 +85,7 @@ page shows comes from a recorded real run, never an estimate.
 |---|---|
 | [`agency-outbound`](skills/packaged/agency-outbound/SKILL.md) | This skill should be used when the user wants to run the Agency Outbound skill, or asks to "pull the people engaging with a competitor's Lin |
 | [`audience-radar`](skills/packaged/audience-radar/SKILL.md) | This skill should be used when the user wants to run the Content Ideas Engine skill, or asks to "find out what my audience talks about", "mi |
+| [`competitor-ad-research`](skills/packaged/competitor-ad-research/SKILL.md) | This skill should be used when the user wants to run the Competitor Ad Research skill, or asks to "see my competitors' Facebook ads", "pull  |
 | [`competitor-mindshare`](skills/packaged/competitor-mindshare/SKILL.md) | This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how muc |
 | [`gtm-prospecting-desk`](skills/packaged/gtm-prospecting-desk/SKILL.md) | This skill should be used when the user wants to run the Outbound Pipeline Engine skill, or asks to "build my prospecting pipeline", "run my |
 | [`newsletter-autopilot`](skills/packaged/newsletter-autopilot/SKILL.md) | This skill should be used when the user wants to run the Newsletter Autopilot skill, or asks to "research and draft my newsletter", "assembl |
