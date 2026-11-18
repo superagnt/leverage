@@ -190,7 +190,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -232,7 +232,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         }
       },
       "required": [
@@ -280,7 +280,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -326,7 +326,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -369,7 +369,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         },
         "limit": {
           "type": "integer",
@@ -407,7 +407,7 @@ to an API endpoint under the base URL.
         },
         "language_code": {
           "type": "string",
-          "description": "Two-letter language code. Default 'en'."
+          "description": "Language code, e.g. 'en', 'de' or 'zh-TW'. A location takes only its own languages ('en' or 'es' for the United States, 'de' for Germany, 2276), and any other is refused. Default: 'en' where the location offers it, otherwise the location's main language."
         }
       },
       "required": [
