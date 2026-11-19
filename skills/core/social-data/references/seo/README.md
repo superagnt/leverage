@@ -611,7 +611,7 @@ The following JSON defines all available tools with their parameters. Each tool 
         },
         "model_name": {
           "type": "string",
-          "description": "The model to ask: claude-haiku-4-5, claude-sonnet-4-5 (default claude-haiku-4-5)."
+          "description": "The model to ask: claude-haiku-4-5, claude-sonnet-4-5, claude-haiku-5-5, claude-sonnet-5-5, claude-opus-5-5 (default claude-haiku-4-5)."
         },
         "max_output_tokens": {
           "type": "integer",
